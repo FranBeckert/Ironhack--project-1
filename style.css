@@ -1,0 +1,49 @@
+/* check if necessary */
+
+body {
+  background-color: beige;
+}
+
+#instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#violin-neck {
+  background-color: black;
+  width: 70%;
+  height: 6rem;
+  display: flex;
+  /* check it */
+  flex-direction: column;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+#string {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+#string::before {
+  content: "";
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(#eee, #999);
+  /* centralize the string */
+  position: absolute;
+  top: 41%;
+}
+
+.nut {
+  display: flex;
+  border-right: 12px solid saddlebrown;
+}
+
+button {
+    width: auto;
+}
