@@ -1,8 +1,9 @@
-/* check if necessary */
+
 
 body {
-  background-color: beige;
+  background-color: beige;  
 }
+
 
 #instructions {
   display: flex;
@@ -11,10 +12,34 @@ body {
   align-items: center;
 }
 
+#instructions h1 {
+  font-family: "Merienda", cursive;
+  text-align: center;  
+  color: darkgreen;
+}
+
+#instructions p {
+  font-family: "Merienda", cursive;
+  text-align: center;      
+}
+
+#section-1 {
+  border: 5px solid coral;
+  border-radius: 15px;
+  width: 45%;
+  background-color: antiquewhite;
+}
+
+#section-1 h3 {
+  text-align: center;
+}
+
+
+
 #violin-neck {
   background-color: black;
-  width: 70%;
-  height: 6rem;
+  width: 85%;
+  height: 8rem;
   display: flex;
   /* check it */
   flex-direction: column;
@@ -36,14 +61,45 @@ body {
   background: linear-gradient(#eee, #999);
   /* centralize the string */
   position: absolute;
-  top: 41%;
+  top: 41%;  
 }
 
 .nut {
   display: flex;
   border-right: 12px solid saddlebrown;
+  padding-right: 5%;
+  background-color: beige;
 }
 
 button {
     width: auto;
+    border-radius: 50%;
+    width: 15%;
+    margin: 0px 4px;
+    background-color:darkolivegreen;    
+}
+
+.violin-image {
+  width: 100%;
+}
+
+.nut button {
+  background-color: #999;
+  width: 100%;
+  padding-right: 20px;
+  position: relative;
+  
+}
+
+.finger-0 {
+  border-radius: 0%;
+  margin:2px 0px;
+}
+
+.finger-none {
+  background-color:#2d2d2d;
+}
+
+.finger-1, .finger-2, .finger-3 {
+  position: relative; 
 }
