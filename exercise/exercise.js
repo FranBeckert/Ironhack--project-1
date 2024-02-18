@@ -16,3 +16,15 @@ console.log(
   anagramCounter(["dell", "ledl", "abc", "cba", "bca", "bac"])
 );
 console.log(anagramCounter(['dell', 'ledl', 'abc', 'cba', 'bca', 'bac', 'cab']))
+
+
+// function anagramCounter(wordsArray) {
+//   for (let i=0; i<wordsArray.length;i++){
+//     console.log(wordsArray[i]);
+//   }  
+// }
+
+// console.log(anagramCounter(["dell", "ledl", "abc", "cba", "bca", "bac"]));
+// // console.log(
+// //   anagramCounter(["dell", "ledl", "abc", "cba", "bca", "bac", "cab"])
+// // );

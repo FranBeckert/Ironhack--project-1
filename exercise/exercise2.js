@@ -1,12 +1,14 @@
-function anagramCounter(wordsArray) {
-  for (let i=0; i<wordsArray.length;i++){
-    return wordsArray[i]
+function lastDayIsFriday(initialYear, endYear) {
+  let fridayCount = 0;
+  for (let year= initialYear; year<= endYear; year++) {
+    for (let month= 1; month <= 12; month++) {
+      let lastDay = new Date(year, month,0).getDay();
+      if(lastDay === 5) {
+        fridayCount++
+      }
+    }
   }
-
-
+  return fridayCount;
 }
 
-console.log(anagramCounter(["dell", "ledl", "abc", "cba", "bca", "bac"]));
-// console.log(
-//   anagramCounter(["dell", "ledl", "abc", "cba", "bca", "bac", "cab"])
-// );
+console.log(lastDayIsFriday(1901, 2000));

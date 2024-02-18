@@ -3,34 +3,52 @@ let allButtonsArray = [...allButtons]
 console.log(allButtons)
 console.log(allButtonsArray)
 
-// let audio = new Audio("sound/a#.m4a");
 
-// const notesSound = (note) => {
-//     audio.src = `sound/${note}.m4a;`
-//     audio.play();
+// // para saber qual é o estado atual
+// const state = {
+//     playedSequence: [],
+//     expectedSequence:["a","a"...]
 // }
+
+// function render(){
+//     console.log(state.playedSequence)
+//     // if ...length===6
+//         // if right {appear button /cheange text}
+//         // else wrong {playedSequence: [], try again}
+// }
+
+
+let audio = new Audio("sound-wav/c.wav");
+
+const notesSound = (note) => {
+    audio.src = `sound-wav/${note}.wav`;
+    console.log(audio.src)
+    audio.play();
+}
 
 allButtonsArray.forEach(button => {
     // console.log(button.dataset.note)
     button.addEventListener('click', () => {
-        // playTune(button.dataset.note);
+        notesSound(button.dataset.note);
+        console.log(button.dataset.note)
+        // state.playedSequence.push(button.dataset.note);
         
         button.style.backgroundColor = 'chocolate';
         setTimeout(() => {
             button.style.backgroundColor= "";
         },300);
+
+        // render();
     });
     
 });
 
 
-// // implement the alerts
-// let text = ""
-// let playerName = prompt("Hi player! What is your name?");
-// if (playerName === null || playerName = "") {
-//     text = `Hello player 1`  
-// } else {
-//     text = `Hello ${playerName}!`
+
+// continueButto.addeventlistener (click){
+    // esconder botao, mudar o texto, mudar a sequencia[]
+    // render()
 // }
-// alert(text)
+
+
 
