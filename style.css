@@ -1,5 +1,5 @@
 body {
-  background-color: beige;
+  background-color: beige;  
 }
 
 #title-description {
@@ -18,13 +18,27 @@ body {
 #title-description p {
   font-family: "Merienda", cursive;
   text-align: center;
+  font-weight: bold;
 }
 
-#section-1 {
-  border: 5px solid coral;
-  border-radius: 15px;
+#music-notes-displayed {
+  width: 87%;
+  margin: auto; 
+  border-radius: 4px;
+  background-color: bisque;
+  display: none;
+}
+
+#music-notes-displayed h2 {
+  font-size: 1.3rem;
+  font-weight: lighter;
+  background: gainsboro;
+}
+
+#section-1 { 
+  border-radius: 4px;
   width: 45%;
-  background-color: antiquewhite;
+  background-color: khaki;
 }
 
 #section-1 h3 {
@@ -34,16 +48,15 @@ body {
 #continue-button {
   background: darkred;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: medium;
   font-weight: 700;
   line-height: 2;
-  margin-top: 10px;
-  margin-top: 10px;
+  margin-top: 25px;  
   color: antiquewhite;
+  font-family: "Merienda", cursive;
+
 }
-
-
 
 
 
