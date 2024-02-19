@@ -3,72 +3,65 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
     <title>Violin App</title>
   </head>
 
   <body>
     <div id="main-background">
-      <div id="instructions">
+      <div id="title-description">
         <header>
           <h1>Welcome to the Violin world</h1>
           <p>We are going to learn a music step by step. It will be fun!</p>
         </header>
 
         <section id="section-1">
-          <h3>Listen and repeat:</h3>        
+          <h3 id="instructions">Listen and repeat:</h3>        
         </section>
+        <button type="button" id="continue-button">Continue Game</button>
       </div>
 
       <section id="section-2">
         <div id="violin-neck">
-          <div id="string" class="e-string">
+          <div class="e-string string">
             <div class="nut">
-              <button type="button" class="finger-0 buttons" data-note="e">E</button>
+              <button type="button" class="finger-0 note-buttons" data-note="e">E</button>
             </div>
-            <button type="button" class="finger-none buttons" data-note="f">F</button>
-            <button type="button" class="finger-1 buttons" data-note="fsharp">F#</button>
-            <button type="button" class="finger-none buttons" data-note="g">G</button>
-            <button type="button" class="finger-2 buttons" data-note="gsharp">G#</button>
-            <button type="button" class="finger-3 buttons" data-note="a2">A</button>
+            <button type="button" class="finger-none note-buttons" data-note="f">F</button>
+            <button type="button" class="finger-1 note-buttons" data-note="fsharp">F#</button>
+            <button type="button" class="finger-none note-buttons" data-note="g">G</button>
+            <button type="button" class="finger-2 note-buttons" data-note="gsharp">G#</button>
+            <button type="button" class="finger-3 note-buttons" data-note="a2">A</button>
           </div>
-          <div id="string" class="a-string">
+          <div class="a-string string">
             <div class="nut">
-              <button type="button" class="finger-0 buttons" data-note="a">A</button>
+              <button type="button" class="finger-0 note-buttons" data-note="a">A</button>
             </div>
-            <button type="button" class="finger-none buttons" data-note="asharp">A#</button>
-            <button type="button" class="finger-1 buttons"data-note="b">B</button>
-            <button type="button" class="finger-none buttons" data-note="c">C</button>
-            <button type="button" class="finger-2 buttons" data-note="csharp">C#</button>
-            <button type="button" class="finger-3 buttons" data-note="d">D</button>
+            <button type="button" class="finger-none note-buttons" data-note="asharp">A#</button>
+            <button type="button" class="finger-1 note-buttons" data-note="b">B</button>
+            <button type="button" class="finger-none note-buttons" data-note="c">C</button>
+            <button type="button" class="finger-2 note-buttons" data-note="csharp">C#</button>
+            <button type="button" class="finger-3 note-buttons" data-note="d">D</button>
           </div>
-          <div id="string" class="d-string">
+          <div class="d-string string">
             <div class="nut">
-              <button type="button" class="finger-0 buttons" data-note="d">D</button>
+              <button type="button" class="finger-0 note-buttons" data-note="d">D</button>
             </div>
           </div>
-          <div id="string" class="g-string">
+          <div class="g-string string">
             <div class="nut">
-              <button type="button" class="finger-0 buttons" data-note="g">G</button>
+              <button type="button" class="finger-0 note-buttons" data-note="g">G</button>
             </div>
           </div>
         </div>
       </section>
 
       <section section-3>
-        <img
-          class="violin-image"
-          src="images/violin.png"
-          alt="violin image with neck focus"
-        />
+        <img class="violin-image" src="images/violin.png" alt="violin image with neck focus" />
       </section>
     </div>
 
     <script src="index.js"></script>
-    
   </body>
 </html>
