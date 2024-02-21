@@ -155,6 +155,41 @@ const instructions = document.getElementById("instructions");
 const continueButton = document.getElementById("continue-button");
 const section1 = document.getElementById("section-1");
 
+// points
+const gamePoints = document.getElementById("game-points");
+let totalPoints = state.points;
+
+function pointsOnTheScreen() {
+  // WHEN CLICKED I WANTED TO START EVERYTHING AGAIN
+  continueButton.addEventListener("click", () => {
+    totalPoints = 5;
+    state.playedSequence = [];  
+    gamePoints.style.display = "block";
+    musicNotesDisplayed.style.display = "block";
+    section1.style.backgroundColor = "khaki";
+    console.log("total points second time:", totalPoints);
+    gamePoints.innerHTML = `Points: ${totalPoints}`;
+    instructions.innerHTML = "Click on Start Game:"
+  });
+  if (totalPoints === 0) {
+    instructions.innerHTML = "GAME OVER";
+    continueButton.innerText = "Start Game ";
+    continueButton.style.display = "block";
+    section1.style.backgroundColor = "orange";
+    gamePoints.style.display = "none";
+    refreshButton.style.display = "none";
+  }
+// CHANGE TO THE RIGHT NUMBER WHEN EVERYTHING TESTED!!!!!!!
+  if (state.currentPhase > 1) {
+    instructions.innerHTML = "Congratulations! YOU WON!";
+    section1.style.backgroundColor = "pink";
+    continueButton.innerHTML = "Play again";
+    gamePoints.style.display = "none";
+    continueButton.style.display = "block";
+    musicNotesDisplayed.style.display = "none";
+  }
+}
+
 function render() {
   console.log("played sequence", state.playedSequence);
   const phase = phases[state.currentPhase];
@@ -176,6 +211,8 @@ function render() {
       section1.removeChild(refreshButton);
       if (state.currentPhase < phases.length - 1) {
         instructions.innerText = "You nailed it!";
+        totalPoints++;
+        console.log("total points:", totalPoints);
         continueButton.style.display = "block";
         continueButton.addEventListener("click", () => {
           continueButton.style.display = "none";
@@ -188,12 +225,12 @@ function render() {
       instructions.innerText = "Almost! Let's try one more time";
       continueButton.style.display = "none";
       console.log("creating button");
+      totalPoints--;
+      console.log("total points:", totalPoints);
     }
   }
-
-  // if ...length===6
-  // if right {appear button /change text}
-  // else wrong {playedSequence: [], try again}
+  gamePoints.innerHTML = `Points: ${totalPoints}`;
+  pointsOnTheScreen();
 }
 
 // audio parts playing after clicking the button
@@ -212,6 +249,9 @@ refreshButton.addEventListener("click", () => {
   render();
 });
 
+const initialText = document.getElementById("initial-text");
+const musicNotesDisplayed = document.getElementById("music-notes-displayed");
+
 continueButton.addEventListener("click", () => {
   continueButton.innerText = "Continue Game ";
   // clean the sequence if player started accidentally playing before hitting continue button
@@ -221,10 +261,9 @@ continueButton.addEventListener("click", () => {
     continueButton.style.display = "none";
   }, 1);
   section1.append(refreshButton);
-  const initialText = document.getElementById("initial-text");
+
   initialText.style.display = "none";
 
-  const musicNotesDisplayed = document.getElementById("music-notes-displayed");
   musicNotesDisplayed.style.display = "block";
 
   instructions.innerText = phases[state.currentPhase].instructionPhase;
@@ -234,12 +273,3 @@ continueButton.addEventListener("click", () => {
 
   render();
 });
-
-// phases.instructionPhase.forEach(instruction => {
-
-// })
-
-// continueButto.addeventlistener (click){
-// esconder botao, mudar o texto, mudar a sequencia[]
-// render()
-// }

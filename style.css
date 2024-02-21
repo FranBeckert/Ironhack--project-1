@@ -49,6 +49,13 @@ body {
 
 #section-1 h3 {
   text-align: center;
+  font-size: x-large;
+}
+
+#game-points {
+  background-color: yellow;
+  padding: 5% 0px;
+  margin: 5% 20%;
 }
 
 #continue-button {
