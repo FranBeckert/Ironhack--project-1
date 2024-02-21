@@ -35,16 +35,18 @@ allButtonsArray.forEach((button) => {
 
 const phases = [
   // solo
-  { sequence: ["a", "a", "e", "e", "fsharp", "fsharp", "e"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/part1.wav" },
-  { sequence: ["d", "d", "csharp", "csharp", "b", "b", "a"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/part2.wav" },
+  { sequence: ["a", "a", "e", "e", "fsharp", "fsharp", "e"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/1.wav" },
+  { sequence: ["d", "d", "csharp", "csharp", "b", "b", "a"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/2.wav" },
   // with piano accompaniment
-  { sequence: ["a", "a", "e", "e", "fsharp", "fsharp", "e"], instructionPhase: "Now with piano accompaniment", audioSequence: "sound-2/part3.wav" },
-  { sequence: ["d", "d", "csharp", "csharp", "b", "b", "a"], instructionPhase: "Now with piano accompaniment" },
-  { sequence: ["a", "a", "e", "e", "fsharp", "fsharp", "e", "d", "d", "csharp", "csharp", "b", "b", "a"], instructionPhase: "Now everything you just learned" },
+  {
+    sequence: ["a", "a", "e", "e", "fsharp", "fsharp", "e", "d", "d", "csharp", "csharp", "b", "b", "a"],
+    instructionPhase: "Now everything you just learned with piano accompaniment",
+    audioSequence: "sound-2/34.wav",
+  },
   //   play solo
-  { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Listen and repeat" },
+  { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/6(1).wav" },
   // with piano accompaniment
-  { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Now with piano accompaniment" },
+  { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Now with piano accompaniment", audioSequence: "sound-2/6.wav" },
   // whole music with piano
   {
     sequence: [
@@ -91,55 +93,8 @@ const phases = [
       "b",
       "a",
     ],
-    instructionPhase: "Play the whole music",
-  },
-  // whole music without piano melodie
-  {
-    sequence: [
-      "a",
-      "a",
-      "e",
-      "e",
-      "fsharp",
-      "fsharp",
-      "e",
-      "d",
-      "d",
-      "csharp",
-      "csharp",
-      "b",
-      "b",
-      "a",
-      "e",
-      "e",
-      "d",
-      "d",
-      "csharp",
-      "csharp",
-      "b",
-      "e",
-      "e",
-      "d",
-      "d",
-      "csharp",
-      "csharp",
-      "b",
-      "a",
-      "a",
-      "e",
-      "e",
-      "fsharp",
-      "fsharp",
-      "e",
-      "d",
-      "d",
-      "csharp",
-      "csharp",
-      "b",
-      "b",
-      "a",
-    ],
-    instructionPhase: "Final step, whole music without the help of the piano melodie",
+    instructionPhase: "Play the whole music with a remix",
+    audioSequence: "sound-2/8.wav",
   },
 ];
 
@@ -149,6 +104,7 @@ const state = {
   // to take the phases
   currentPhase: 0,
   points: 5,
+  gameFinished: false,
 };
 
 const instructions = document.getElementById("instructions");
@@ -157,21 +113,26 @@ const section1 = document.getElementById("section-1");
 
 // points
 const gamePoints = document.getElementById("game-points");
-let totalPoints = state.points;
 
-function pointsOnTheScreen() {
-  // WHEN CLICKED I WANTED TO START EVERYTHING AGAIN
-  continueButton.addEventListener("click", () => {
-    totalPoints = 5;
-    state.playedSequence = [];  
+continueButton.addEventListener("click", () => {
+  if (state.gameFinished) {
+    state.gameFinished = false;
+    state.points = 5;
+    state.currentPhase = 0;
+    state.playedSequence = [];
     gamePoints.style.display = "block";
     musicNotesDisplayed.style.display = "block";
     section1.style.backgroundColor = "khaki";
-    console.log("total points second time:", totalPoints);
-    gamePoints.innerHTML = `Points: ${totalPoints}`;
-    instructions.innerHTML = "Click on Start Game:"
-  });
-  if (totalPoints === 0) {
+    console.log("total points second time:", state.points);
+    gamePoints.innerHTML = `Points: ${state.points}`;
+    instructions.innerHTML = "Click on Start Game:";
+  }
+  render();
+});
+
+function pointsOnTheScreen() {
+  if (state.points === 0) {
+    state.gameFinished = true;
     instructions.innerHTML = "GAME OVER";
     continueButton.innerText = "Start Game ";
     continueButton.style.display = "block";
@@ -179,8 +140,9 @@ function pointsOnTheScreen() {
     gamePoints.style.display = "none";
     refreshButton.style.display = "none";
   }
-// CHANGE TO THE RIGHT NUMBER WHEN EVERYTHING TESTED!!!!!!!
-  if (state.currentPhase > 1) {
+ 
+  if (state.currentPhase > phases.length) {
+    state.gameFinished = true;
     instructions.innerHTML = "Congratulations! YOU WON!";
     section1.style.backgroundColor = "pink";
     continueButton.innerHTML = "Play again";
@@ -211,8 +173,8 @@ function render() {
       section1.removeChild(refreshButton);
       if (state.currentPhase < phases.length - 1) {
         instructions.innerText = "You nailed it!";
-        totalPoints++;
-        console.log("total points:", totalPoints);
+        state.points++;
+        console.log("total points:", state.points);
         continueButton.style.display = "block";
         continueButton.addEventListener("click", () => {
           continueButton.style.display = "none";
@@ -225,11 +187,11 @@ function render() {
       instructions.innerText = "Almost! Let's try one more time";
       continueButton.style.display = "none";
       console.log("creating button");
-      totalPoints--;
-      console.log("total points:", totalPoints);
+      state.points--;
+      console.log("total points:", state.points);
     }
   }
-  gamePoints.innerHTML = `Points: ${totalPoints}`;
+  gamePoints.innerHTML = `Points: ${state.points}`;
   pointsOnTheScreen();
 }
 
