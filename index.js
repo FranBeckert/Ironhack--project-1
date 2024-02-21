@@ -130,7 +130,7 @@ continueButton.addEventListener("click", () => {
   render();
 });
 
-function pointsOnTheScreen() {
+function checkPoints() {
   if (state.points === 0) {
     state.gameFinished = true;
     instructions.innerHTML = "GAME OVER";
@@ -139,16 +139,6 @@ function pointsOnTheScreen() {
     section1.style.backgroundColor = "orange";
     gamePoints.style.display = "none";
     refreshButton.style.display = "none";
-  }
- 
-  if (state.currentPhase > phases.length) {
-    state.gameFinished = true;
-    instructions.innerHTML = "Congratulations! YOU WON!";
-    section1.style.backgroundColor = "pink";
-    continueButton.innerHTML = "Play again";
-    gamePoints.style.display = "none";
-    continueButton.style.display = "block";
-    musicNotesDisplayed.style.display = "none";
   }
 }
 
@@ -182,6 +172,13 @@ function render() {
         state.currentPhase++;
       } else {
         instructions.innerText = "Game is finished. Well done violinist!";
+        state.gameFinished = true;
+        instructions.innerHTML = "Congratulations! YOU WON!";
+        section1.style.backgroundColor = "pink";
+        continueButton.innerHTML = "Play again";
+        gamePoints.style.display = "none";
+        continueButton.style.display = "block";
+        musicNotesDisplayed.style.display = "none";
       }
     } else {
       instructions.innerText = "Almost! Let's try one more time";
@@ -192,7 +189,7 @@ function render() {
     }
   }
   gamePoints.innerHTML = `Points: ${state.points}`;
-  pointsOnTheScreen();
+  checkPoints();
 }
 
 // audio parts playing after clicking the button
