@@ -201,7 +201,9 @@ const refreshButton = document.createElement("button");
 refreshButton.innerText = "Clean sequence";
 refreshButton.style.backgroundColor = "orange";
 refreshButton.style.borderRadius = "4px";
-refreshButton.style.marginTop = "9px";
+refreshButton.style.marginTop = "4px";
+refreshButton.style.marginBottom = "25px";
+refreshButton.style.height = "2.5rem";
 refreshButton.addEventListener("click", () => {
   state.playedSequence = [];
   render();

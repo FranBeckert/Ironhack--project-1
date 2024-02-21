@@ -1,5 +1,9 @@
 body {
-  background-color: beige;  
+  background-color: antiquewhite;
+}
+
+#main-background {
+  background-color: beige;
 }
 
 #title-description {
@@ -23,7 +27,7 @@ body {
 
 #music-notes-displayed {
   width: 87%;
-  margin: auto; 
+  margin: auto;
   border-radius: 4px;
   background-color: bisque;
   display: none;
@@ -35,10 +39,12 @@ body {
   background: gainsboro;
 }
 
-#section-1 { 
+#section-1 {
   border-radius: 4px;
   width: 45%;
   background-color: khaki;
+  text-align: center;
+ 
 }
 
 #section-1 h3 {
@@ -52,14 +58,10 @@ body {
   font-size: medium;
   font-weight: 700;
   line-height: 2;
-  margin-top: 25px;  
+  margin-top: 25px;
   color: antiquewhite;
   font-family: "Merienda", cursive;
-
 }
-
-
-
 
 #violin-neck {
   background-color: black;
@@ -129,4 +131,57 @@ body {
 .finger-2,
 .finger-3 {
   position: relative;
+}
+
+@media screen and (min-width: 425px) and (max-width: 768px) {
+  #main-background {
+    width: 80%;
+    margin: auto;
+  }
+  .note-buttons {
+    width: 13%;
+    margin-right: 9px;
+  }
+  body {
+    display: flex;
+    justify-content: center;
+  }
+  div {
+    place-self: center;
+  }
+  #continue-button {
+    line-height: 2;
+    width: 35%;
+  }
+  .finger-0 {
+    height: 1.75rem;
+    width: 45px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #main-background {
+    width: 50%;
+    margin: auto;
+  }
+  body {
+    display: flex;
+    height: 1032px;
+    justify-content: center;
+  }
+  div {
+    place-self: center;
+  }
+  #violin-neck {
+    width: 75%;
+    height: 9rem;
+  }
+  .finger-0 {
+    height: 2rem;
+    width: 45px;
+  }
+  #continue-button {
+    line-height: 3;
+    width: 30%;
+  }
 }
