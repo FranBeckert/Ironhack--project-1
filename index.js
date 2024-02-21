@@ -166,6 +166,7 @@ function render() {
     state.playedSequence.forEach((note, index) => {
       if (note !== expectedSequence[index]) {
         isEqual = false;
+        continueButton.style.display = "block";
       }
     });
 
@@ -176,6 +177,9 @@ function render() {
       if (state.currentPhase < phases.length - 1) {
         instructions.innerText = "You nailed it!";
         continueButton.style.display = "block";
+        continueButton.addEventListener("click", () => {
+          continueButton.style.display = "none";
+        });
         state.currentPhase++;
       } else {
         instructions.innerText = "Game is finished. Well done violinist!";
@@ -183,13 +187,12 @@ function render() {
     } else {
       instructions.innerText = "Almost! Let's try one more time";
       continueButton.style.display = "none";
-      // create a button to clean the sequence
       console.log("creating button");
     }
   }
 
   // if ...length===6
-  // if right {appear button /cheange text}
+  // if right {appear button /change text}
   // else wrong {playedSequence: [], try again}
 }
 
@@ -211,7 +214,12 @@ refreshButton.addEventListener("click", () => {
 
 continueButton.addEventListener("click", () => {
   continueButton.innerText = "Continue Game ";
-
+  // clean the sequence if player started accidentally playing before hitting continue button
+  state.playedSequence = [];
+  // desappear the botton for the first time
+  setTimeout(() => {
+    continueButton.style.display = "none";
+  }, 1);
   section1.append(refreshButton);
   const initialText = document.getElementById("initial-text");
   initialText.style.display = "none";
