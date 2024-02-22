@@ -40,13 +40,13 @@ const phases = [
   // with piano accompaniment
   {
     sequence: ["a", "a", "e", "e", "fsharp", "fsharp", "e", "d", "d", "csharp", "csharp", "b", "b", "a"],
-    instructionPhase: "Now everything you just learned with piano accompaniment",
-    audioSequence: "sound-2/34.wav",
+    instructionPhase: "Now everything you just learned together with piano accompaniment",
+    audioSequence: "sound-2/12piano.wav",
   },
   //   play solo
   { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/6(1).wav" },
   // with piano accompaniment
-  { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Now with piano accompaniment", audioSequence: "sound-2/6.wav" },
+  { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Now together with piano accompaniment", audioSequence: "sound-2/33piano.wav" },
   // whole music with piano
   {
     sequence: [
@@ -93,8 +93,8 @@ const phases = [
       "b",
       "a",
     ],
-    instructionPhase: "Play the whole music with a remix",
-    audioSequence: "sound-2/8.wav",
+    instructionPhase: "Play the whole music with piano accompaniment ",
+    audioSequence: "sound-2/all3piano.wav",
   },
 ];
 
@@ -103,7 +103,7 @@ const state = {
   playedSequence: [],
   // to take the phases
   currentPhase: 0,
-  points: 5,
+  points: 3,
   gameFinished: false,
 };
 
@@ -117,7 +117,7 @@ const gamePoints = document.getElementById("game-points");
 continueButton.addEventListener("click", () => {
   if (state.gameFinished) {
     state.gameFinished = false;
-    state.points = 5;
+    state.points = 3;
     state.currentPhase = 0;
     state.playedSequence = [];
     gamePoints.style.display = "block";
@@ -133,9 +133,10 @@ continueButton.addEventListener("click", () => {
 function checkPoints() {
   if (state.points === 0) {
     state.gameFinished = true;
-    instructions.innerHTML = "GAME OVER";
-    continueButton.innerText = "Start Game ";
-    continueButton.style.display = "block";
+    instructions.innerHTML = "GAME OVER";    
+    continueButton.style.display = "block"; 
+    continueButton.innerText = "Start Game ";   
+    continueButton.style.backgroundColor = "red";
     section1.style.backgroundColor = "orange";
     gamePoints.style.display = "none";
     refreshButton.style.display = "none";
@@ -166,23 +167,24 @@ function render() {
         state.points++;
         console.log("total points:", state.points);
         continueButton.style.display = "block";
-        continueButton.addEventListener("click", () => {
-          continueButton.style.display = "none";
-        });
+        continueButton.innerHTML = "Continue Game";
+        continueButton.style.backgroundColor = "darkred";
+        
         state.currentPhase++;
       } else {
         instructions.innerText = "Game is finished. Well done violinist!";
         state.gameFinished = true;
-        instructions.innerHTML = "Congratulations! YOU WON!";
+        instructions.innerHTML = "Congratulations! YOU WON!!!";
         section1.style.backgroundColor = "pink";
+        section1.style.width = "80%";
         continueButton.innerHTML = "Play again";
+        continueButton.style.backgroundColor = "red";
         gamePoints.style.display = "none";
         continueButton.style.display = "block";
         musicNotesDisplayed.style.display = "none";
       }
     } else {
-      instructions.innerText = "Almost! Let's try one more time";
-      continueButton.style.display = "none";
+      instructions.innerText = "Almost! Let's try one more time";     
       console.log("creating button");
       state.points--;
       console.log("total points:", state.points);
@@ -212,13 +214,14 @@ const initialText = document.getElementById("initial-text");
 const musicNotesDisplayed = document.getElementById("music-notes-displayed");
 
 continueButton.addEventListener("click", () => {
-  continueButton.innerText = "Continue Game ";
+  continueButton.innerText = "Play it Again";
+  continueButton.style.backgroundColor = "royalblue";
   // clean the sequence if player started accidentally playing before hitting continue button
   state.playedSequence = [];
   // desappear the botton for the first time
-  setTimeout(() => {
-    continueButton.style.display = "none";
-  }, 1);
+  // setTimeout(() => {
+  //   continueButton.style.display = "none";
+  // }, 1);
   section1.append(refreshButton);
 
   initialText.style.display = "none";
