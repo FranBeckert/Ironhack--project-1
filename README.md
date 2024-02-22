@@ -12,6 +12,6 @@
 ##### I was trying to follow what I learned in the Pizza-project lab. I had also help to do some logic parts.
 ##### The code could be more organized, but by this point I am satisfied.      
 ##### The tracks were recorded at home using a digital piano.
-##### I took a lot of code information from youtube, like:
+##### I took a some helpful code information from youtube, like:
 - https://www.youtube.com/watch?v=geRBqZjBgQs&list=LL&index=8&t=25s
 - https://www.youtube.com/watch?v=Mv1ZYpo8q4g&list=LL&index=9&t=1487s
