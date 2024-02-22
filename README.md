@@ -1,5 +1,5 @@
 # **Violin game**
-## This is the first project I did during the Ironhack bootcamp
+##### This is the first project I did during the Ironhack bootcamp
 ---
 
 ##### As a violin teacher, I was trying to make a game to learn a music.
