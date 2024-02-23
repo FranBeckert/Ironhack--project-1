@@ -35,18 +35,18 @@ allButtonsArray.forEach((button) => {
 
 const phases = [
   // solo
-  { sequence: ["a", "a", "e", "e", "fsharp", "fsharp", "e"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/1.wav" },
-  { sequence: ["d", "d", "csharp", "csharp", "b", "b", "a"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/2.wav" },
+  { sequence: ["a", "a", "e", "e", "fsharp", "fsharp", "e"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/1.wav", musicNotesSequence: "A A E E F# F#  E" },
+  { sequence: ["d", "d", "csharp", "csharp", "b", "b", "a"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/2.wav", musicNotesSequence: "D D C# C# B B A" },
   // with piano accompaniment
   {
     sequence: ["a", "a", "e", "e", "fsharp", "fsharp", "e", "d", "d", "csharp", "csharp", "b", "b", "a"],
     instructionPhase: "Now everything you just learned together with piano accompaniment",
-    audioSequence: "sound-2/12piano.wav",
+    audioSequence: "sound-2/1122piano.wav", musicNotesSequence: "A A E E F# F# E \n D D C# C# B B A",
   },
   //   play solo
-  { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/6(1).wav" },
+  { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/6(1).wav", musicNotesSequence: " E E D D C# C# B \n  E E D D C# C# B" },
   // with piano accompaniment
-  { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Now together with piano accompaniment", audioSequence: "sound-2/33piano.wav" },
+  { sequence: ["e", "e", "d", "d", "csharp", "csharp", "b", "e", "e", "d", "d", "csharp", "csharp", "b"], instructionPhase: "Now together with piano accompaniment", audioSequence: "sound-2/3333piano.wav", musicNotesSequence: " E E D D C# C# B \n  E E D D C# C# B" },
   // whole music with piano
   {
     sequence: [
@@ -94,7 +94,7 @@ const phases = [
       "a",
     ],
     instructionPhase: "Play the whole music with piano accompaniment ",
-    audioSequence: "sound-2/all3piano.wav",
+    audioSequence: "sound-2/all4piano.wav", musicNotesSequence: "A A E E F# F# E \n D D C# C# B B A \n E E D D C# C# B \n E E D D C# C# B \n A A E E F# F# E \n D D C# C# B B A",
   },
 ];
 
@@ -214,7 +214,7 @@ const initialText = document.getElementById("initial-text");
 const musicNotesDisplayed = document.getElementById("music-notes-displayed");
 
 continueButton.addEventListener("click", () => {
-  continueButton.innerText = "Play it Again";
+  continueButton.innerText = "Play Music Again";
   continueButton.style.backgroundColor = "royalblue";
   // clean the sequence if player started accidentally playing before hitting continue button
   state.playedSequence = [];
@@ -229,6 +229,8 @@ continueButton.addEventListener("click", () => {
   musicNotesDisplayed.style.display = "block";
 
   instructions.innerText = phases[state.currentPhase].instructionPhase;
+  const musicNotesSequences = document.getElementById("musicSequence");
+  musicNotesSequences.innerText = phases[state.currentPhase].musicNotesSequence;
 
   audio2.src = phases[state.currentPhase].audioSequence;
   audio2.play();
