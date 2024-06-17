@@ -5,6 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
+    <script>
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "firebase/app";
+      import { getAnalytics } from "firebase/analytics";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+    
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDwgJkKKGylbNCv-C_CK6Z_5gWWCELTjlo",
+        authDomain: "project-1-ironhack.firebaseapp.com",
+        projectId: "project-1-ironhack",
+        storageBucket: "project-1-ironhack.appspot.com",
+        messagingSenderId: "428829829231",
+        appId: "1:428829829231:web:327c3a46de41639ae5459a",
+        measurementId: "G-8L255EF393",
+      };
+    
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+    
     <title>Violin App</title>
   </head>
 
@@ -16,14 +40,14 @@
           <p id="initial-text">We are going to learn a music step by step. It will be fun!</p>
           <div id="music-notes-displayed">
             <h2>Music : Twinkle Twinkle Little Star</h2>
-            <p id="musicSequence">A A E E F# F# E</p>            
+            <p id="musicSequence">A A E E F# F# E</p>
           </div>
         </header>
 
         <section id="section-1">
           <h3 id="instructions">Click on Start Game button:</h3>
           <div>
-            <h3 id="game-points">Points: 3</h3>            
+            <h3 id="game-points">Points: 3</h3>
           </div>
         </section>
         <button type="button" id="continue-button">Start Game</button>
@@ -38,7 +62,7 @@
             <button type="button" class="finger-none note-buttons" data-note="f">F</button>
             <button type="button" class="finger-1 note-buttons" data-note="fsharp">F#</button>
             <button type="button" class="finger-none note-buttons" data-note="g">G</button>
-            <button type="button" class="finger-2 note-buttons " data-note="gsharp">G#</button>
+            <button type="button" class="finger-2 note-buttons" data-note="gsharp">G#</button>
             <button type="button" class="finger-3 note-buttons" data-note="a3">A3</button>
           </div>
           <div class="a-string string">
@@ -53,12 +77,12 @@
           </div>
           <div class="d-string string" data-note="d2">
             <div class="nut">
-              <button type="button" class="finger-0 note-buttons" data-note="d2"> </button>
+              <button type="button" class="finger-0 note-buttons" data-note="d2"></button>
             </div>
           </div>
           <div class="g-string string">
             <div class="nut">
-              <button type="button" class="finger-0 note-buttons" data-note="g2"> </button>
+              <button type="button" class="finger-0 note-buttons" data-note="g2"></button>
             </div>
           </div>
         </div>

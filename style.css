@@ -41,7 +41,7 @@ body {
 
 #section-1 {
   border-radius: 4px;
-  width: 45%;
+  width: 73%;
   background-color: khaki;
   text-align: center;
  
@@ -121,6 +121,7 @@ body {
   background-color: darkolivegreen;
   width: 100%;
   padding-right: 20px;
+  /* to be in front of the string */
   position: relative;
   width: 38px;
 }
@@ -137,6 +138,7 @@ body {
 .finger-1,
 .finger-2,
 .finger-3 {
+  /* to be in front of the string */
   position: relative;
 }
 

@@ -1,3 +1,4 @@
+// get all the notes (buttons) and transform in an array
 let allButtons = document.getElementsByClassName("note-buttons");
 let allButtonsArray = [...allButtons];
 console.log(allButtons);
@@ -12,20 +13,23 @@ allButtonsArray.forEach((button) => {
       button.style.backgroundColor = "";
     }, 300);
 
+    // push the notes played to my state
     state.playedSequence.push(button.dataset.note);
     render();
   });
 });
 
 // ### put sound on the note-buttons
+// The Audio() constructor creates and returns a new HTMLAudioElement object, which is set to its src property
 let audio = new Audio();
 
+// set src attribute of the audio
 const notesSound = (note) => {
   audio.src = `sound-wav/${note}.wav`;
   console.log("note sounds", audio.src);
   audio.play();
 };
-
+// calls the notesSound function with the provided note
 allButtonsArray.forEach((button) => {
   button.addEventListener("click", () => {
     notesSound(button.dataset.note);
@@ -107,13 +111,13 @@ const state = {
   gameFinished: false,
 };
 
+// method to get html element
 const instructions = document.getElementById("instructions");
 const continueButton = document.getElementById("continue-button");
 const section1 = document.getElementById("section-1");
-
-// points
 const gamePoints = document.getElementById("game-points");
 
+// reset the state to be able to play again
 continueButton.addEventListener("click", () => {
   if (state.gameFinished) {
     state.gameFinished = false;
@@ -130,6 +134,7 @@ continueButton.addEventListener("click", () => {
   render();
 });
 
+// game over, when no more points
 function checkPoints() {
   if (state.points === 0) {
     state.gameFinished = true;
@@ -143,12 +148,15 @@ function checkPoints() {
   }
 }
 
+// Main logic (if (if) else)
 function render() {
   console.log("played sequence", state.playedSequence);
+  // how the phase and expected sequence are set
   const phase = phases[state.currentPhase];
   const expectedSequence = phase.sequence;
   console.log("expected sequence", expectedSequence);
   console.log("state", state);
+  // if the length is the same, check the notes sequence
   if (state.playedSequence.length === expectedSequence.length) {
     let isEqual = true;
     state.playedSequence.forEach((note, index) => {
@@ -168,9 +176,9 @@ function render() {
         console.log("total points:", state.points);
         continueButton.style.display = "block";
         continueButton.innerHTML = "Continue Game";
-        continueButton.style.backgroundColor = "darkred";
-        
+        continueButton.style.backgroundColor = "darkred";        
         state.currentPhase++;
+
       } else {
         instructions.innerText = "Game is finished. Well done violinist!";
         state.gameFinished = true;
@@ -190,14 +198,15 @@ function render() {
       console.log("total points:", state.points);
     }
   }
+  // to always update poinsts
   gamePoints.innerHTML = `Points: ${state.points}`;
   checkPoints();
 }
 
 // audio parts playing after clicking the button
-
 let audio2 = new Audio();
 
+// created a refresh button to clean the sequence
 const refreshButton = document.createElement("button");
 refreshButton.innerText = "Clean sequence";
 refreshButton.style.backgroundColor = "orange";
@@ -213,27 +222,32 @@ refreshButton.addEventListener("click", () => {
 const initialText = document.getElementById("initial-text");
 const musicNotesDisplayed = document.getElementById("music-notes-displayed");
 
+
 continueButton.addEventListener("click", () => {
   continueButton.innerText = "Play Music Again";
   continueButton.style.backgroundColor = "royalblue";
   // clean the sequence if player started accidentally playing before hitting continue button
   state.playedSequence = [];
-  // desappear the botton for the first time
+
+  // disappear the button for the first time
   // setTimeout(() => {
   //   continueButton.style.display = "none";
   // }, 1);
+
   section1.append(refreshButton);
 
   initialText.style.display = "none";
-
   musicNotesDisplayed.style.display = "block";
 
+  // change the instruction, note sequences and audio for each phase
   instructions.innerText = phases[state.currentPhase].instructionPhase;
+
   const musicNotesSequences = document.getElementById("musicSequence");
   musicNotesSequences.innerText = phases[state.currentPhase].musicNotesSequence;
 
   audio2.src = phases[state.currentPhase].audioSequence;
   audio2.play();
 
+  
   render();
 });
