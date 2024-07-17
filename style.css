@@ -58,6 +58,10 @@ body {
   margin: 5% 20%;
 }
 
+#start-stop-buttons {
+  display: flex;
+}
+
 #continue-button {
   background: darkred;
   cursor: pointer;
@@ -66,8 +70,22 @@ body {
   font-weight: 700;
   line-height: 2;
   margin-top: 25px;
+  margin-right: 10px;
   color: antiquewhite;
   font-family: "Merienda", cursive;
+}
+
+#pause-button {
+  background: crimson;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: medium;
+  font-weight: 700;
+  line-height: 2;
+  margin-top: 25px;
+  color: antiquewhite;
+  font-family: "Merienda", cursive;
+  display: none;
 }
 
 #violin-neck {
@@ -191,6 +209,5 @@ body {
   }
   #continue-button {
     line-height: 3;
-    width: 30%;
   }
 }

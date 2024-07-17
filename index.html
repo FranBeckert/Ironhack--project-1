@@ -11,7 +11,7 @@
       import { getAnalytics } from "firebase/analytics";
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
-    
+
       // Your web app's Firebase configuration
       // For Firebase JS SDK v7.20.0 and later, measurementId is optional
       const firebaseConfig = {
@@ -23,12 +23,12 @@
         appId: "1:428829829231:web:327c3a46de41639ae5459a",
         measurementId: "G-8L255EF393",
       };
-    
+
       // Initialize Firebase
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
     </script>
-    
+
     <title>Violin App</title>
   </head>
 
@@ -50,7 +50,10 @@
             <h3 id="game-points">Points: 3</h3>
           </div>
         </section>
-        <button type="button" id="continue-button">Start Game</button>
+        <div id="start-stop-buttons">
+          <button type="button" id="continue-button">Start Game</button>
+          <button type="button" id="pause-button">Stop</button>
+        </div>
       </div>
 
       <section id="section-2">

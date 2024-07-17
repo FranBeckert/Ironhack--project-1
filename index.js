@@ -37,6 +37,8 @@ allButtonsArray.forEach((button) => {
   });
 });
 
+
+
 const phases = [
   // solo
   { sequence: ["a", "a", "e", "e", "fsharp", "fsharp", "e"], instructionPhase: "Listen and repeat", audioSequence: "sound-2/1.wav", musicNotesSequence: "A A E E F# F#  E" },
@@ -158,7 +160,7 @@ function render() {
   console.log("state", state);
   // if the length is the same, check the notes sequence
   if (state.playedSequence.length === expectedSequence.length) {
-    let isEqual = true;
+    let isEqual = true;    
     state.playedSequence.forEach((note, index) => {
       if (note !== expectedSequence[index]) {
         isEqual = false;
@@ -176,6 +178,7 @@ function render() {
         console.log("total points:", state.points);
         continueButton.style.display = "block";
         continueButton.innerHTML = "Continue Game";
+        pause.style.display = "none";
         continueButton.style.backgroundColor = "darkred";        
         state.currentPhase++;
 
@@ -188,6 +191,7 @@ function render() {
         continueButton.innerHTML = "Play again";
         continueButton.style.backgroundColor = "red";
         gamePoints.style.display = "none";
+        pause.style.display = "none";
         continueButton.style.display = "block";
         musicNotesDisplayed.style.display = "none";
       }
@@ -205,6 +209,12 @@ function render() {
 
 // audio parts playing after clicking the button
 let audio2 = new Audio();
+
+// pause button
+let pause = document.getElementById("pause-button");
+pause.addEventListener("click", ()=> {
+  audio2.pause();
+})
 
 // created a refresh button to clean the sequence
 const refreshButton = document.createElement("button");
@@ -227,17 +237,14 @@ continueButton.addEventListener("click", () => {
   continueButton.innerText = "Play Music Again";
   continueButton.style.backgroundColor = "royalblue";
   // clean the sequence if player started accidentally playing before hitting continue button
-  state.playedSequence = [];
-
-  // disappear the button for the first time
-  // setTimeout(() => {
-  //   continueButton.style.display = "none";
-  // }, 1);
+  state.playedSequence = [];  
 
   section1.append(refreshButton);
 
   initialText.style.display = "none";
   musicNotesDisplayed.style.display = "block";
+  pause.style.display = "block";
+
 
   // change the instruction, note sequences and audio for each phase
   instructions.innerText = phases[state.currentPhase].instructionPhase;
@@ -247,7 +254,6 @@ continueButton.addEventListener("click", () => {
 
   audio2.src = phases[state.currentPhase].audioSequence;
   audio2.play();
-
   
   render();
 });
